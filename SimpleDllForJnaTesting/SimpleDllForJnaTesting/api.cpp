@@ -55,15 +55,17 @@ extern "C"
 
 		for(unsigned int i=0; i<nNumberOfLines; i++)
 		{
-			pLines[i] = (char*)calloc(100000, sizeof(char));
-			char* currentLine = pLines[i];
+			// report original value rcvd via JNA
+			cout << "\titem index ["<< i <<"] original value ["<< pLines[i] <<"]" << endl;
 
-			cout << "\titem index ["<< i <<"] value ["<< currentLine <<"]" << endl;
+			// allocate a new string and point to it via ptr to ptr (to be returned via JNA)
+			char* pNewLineContents = (char*)calloc(100000, sizeof(char));
+			pLines[i] = pNewLineContents;
 
 			for(unsigned int j = 0; j<100000-1; j++)
 			{
-				currentLine[j] = char(48+i);
-			}
+				pNewLineContents[j] = char(48+i);
+			}			
 		}
 	}
 
