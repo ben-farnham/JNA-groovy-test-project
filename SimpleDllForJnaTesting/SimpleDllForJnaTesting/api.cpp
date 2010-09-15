@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <iostream>
+#include "structDefns.h"
 
 using namespace std;
 
@@ -35,10 +36,31 @@ extern "C"
 		return arrInts;
 	}
 
-	__declspec(dllexport) void __cdecl fill_a_char_buffer(char* const pBuffer, const unsigned int nBufferLength)
+	__declspec(dllexport) void __cdecl fill_a_char_buffer(char buffer[], const unsigned int nBufferLength)
 	{
-		cout << "fill_a_char_buffer called, length ["<< nBufferLength<<"], original buffer contents ["<< pBuffer <<"]" << endl;
+		cout << "fill_a_char_buffer called, length ["<< nBufferLength<<"], original buffer contents ["<< buffer <<"]" << endl;
 
+		for(unsigned int i=0; i<nBufferLength - 1; i++)
+		{
+			// 48 = start of 0-9 chars in ascii table
+			buffer[i] = i%10 + 48;
+		}
+
+		cout << "fill_a_char_buffer completed, buffer content ["<< buffer <<"]" << endl;
+	}
+
+	__declspec(dllexport) void __cdecl fill_array_of_char_buffers(Info* pInfo)
+	{
+		cout << "fill_array_of_char_buffers called, pInfo ["<< pInfo <<"] number of lines ["<< pInfo->numberOfLines <<"]" << endl;
+
+		for(int i=0; i<pInfo->numberOfLines; i++)
+		{
+			char* currentLine = pInfo->lines[i];
+			cout << "\titem index ["<< i <<"] value ["<< currentLine <<"]" << endl;
+
+			currentLine[0] = char(48+i);
+		}
+/*
 		for(unsigned int i=0; i<nBufferLength - 1; i++)
 		{
 			// 48 = start of 0-9 chars in ascii table
@@ -46,6 +68,7 @@ extern "C"
 		}
 
 		cout << "fill_a_char_buffer completed, buffer content ["<< pBuffer <<"]" << endl;
+*/
 	}
 
 
