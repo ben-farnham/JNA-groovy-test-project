@@ -38,7 +38,7 @@ class MyMain
 		println jnaTest.getResultAsString()
 
 //		def arse = new JnaTestGetAnythingToWork()
-//		arse.doIt(theLib)		
+//		arse.doIt(theLib)	
 		
 		theLib.dispose()
 	}

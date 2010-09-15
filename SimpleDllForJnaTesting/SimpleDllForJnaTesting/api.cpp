@@ -1,6 +1,5 @@
 #include <windows.h>
 #include <iostream>
-#include "structDefns.h"
 
 using namespace std;
 
@@ -51,7 +50,7 @@ extern "C"
 
 	__declspec(dllexport) void __cdecl fill_array_of_char_buffers(char** pLines, const unsigned int nNumberOfLines)
 	{
-		cout << "fill_array_of_char_buffers called, pInfo ["<< pLines<<"] number of lines ["<< nNumberOfLines <<"]" << endl;
+		cout << "fill_array_of_char_buffers called, pLines ["<< pLines<<"] number of lines ["<< nNumberOfLines <<"]" << endl;
 
 		for(unsigned int i=0; i<nNumberOfLines; i++)
 		{
@@ -68,5 +67,6 @@ extern "C"
 			}			
 		}
 	}
+
 
 }

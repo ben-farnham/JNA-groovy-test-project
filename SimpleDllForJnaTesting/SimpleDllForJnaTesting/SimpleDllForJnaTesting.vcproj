@@ -169,10 +169,6 @@
 				RelativePath=".\dllMain.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\structDefns.h"
-				>
-			</File>
 		</Filter>
 	</Files>
 	<Globals>
