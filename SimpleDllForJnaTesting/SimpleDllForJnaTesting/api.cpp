@@ -49,28 +49,22 @@ extern "C"
 		cout << "fill_a_char_buffer completed, buffer content ["<< buffer <<"]" << endl;
 	}
 
-	__declspec(dllexport) void __cdecl fill_array_of_char_buffers(Info* pInfo)
+	__declspec(dllexport) void __cdecl fill_array_of_char_buffers(char** pLines, const unsigned int nNumberOfLines)
 	{
-		cout << "fill_array_of_char_buffers called, pInfo ["<< pInfo <<"] number of lines ["<< pInfo->numberOfLines <<"]" << endl;
+		cout << "fill_array_of_char_buffers called, pInfo ["<< pLines<<"] number of lines ["<< nNumberOfLines <<"]" << endl;
 
-		for(int i=0; i<pInfo->numberOfLines; i++)
+		for(unsigned int i=0; i<nNumberOfLines; i++)
 		{
-			char* currentLine = pInfo->lines[i];
+			pLines[i] = (char*)calloc(100000, sizeof(char));
+			char* currentLine = pLines[i];
+
 			cout << "\titem index ["<< i <<"] value ["<< currentLine <<"]" << endl;
 
-			currentLine[0] = char(48+i);
+			for(unsigned int j = 0; j<100000-1; j++)
+			{
+				currentLine[j] = char(48+i);
+			}
 		}
-/*
-		for(unsigned int i=0; i<nBufferLength - 1; i++)
-		{
-			// 48 = start of 0-9 chars in ascii table
-			pBuffer[i] = i%10 + 48;
-		}
-
-		cout << "fill_a_char_buffer completed, buffer content ["<< pBuffer <<"]" << endl;
-*/
 	}
-
-
 
 }
